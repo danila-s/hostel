@@ -3,12 +3,15 @@ import Room from "../Table/Room";
 import { connect } from "react-redux";
 import { loadRoom } from "../api";
 import { roomToStore } from "../redux/actions";
+import {addRoom , getLength} from '../api'
+
 
 class Rooms extends React.Component {
   state = {
     roomsArr: [],
     id: 0,
     idCount: 1,
+    length : []
   };
 
   componentDidMount() {
@@ -16,19 +19,42 @@ class Rooms extends React.Component {
     loadRoom(id).then((data) => {
       this.props.roomToStore(data);
     });
+    this.newLength()
   }
 
-  changeArr = (id, newValue) => {};
+  newLength = () => {
+    getLength().then((data) => {
+      this.setState({length : data});
+      console.log(data)
+    });
+  }
+
+  addNewRoom = () => {
+    addRoom();
+    this.newLength();
+  }
+
+  getRoom = (e) => {
+    this.setState({id : e.target.value - 1})
+    loadRoom(e.target.value - 1)
+    .then((data) => {
+      this.props.roomToStore(data);
+    });
+     
+     
+  }
 
   render() {
     const { roomsArr } = this.props;
+    const {length} = this.state
 
     return (
       <div className="rooms">
         <div className="selector">
           <select onChange={this.getRoom}>
-            <option>Комната {}</option>
-            <option>Комната 1</option>
+            {length.map(item => {
+              return<option>{item}</option>
+            })}
           </select>
         </div>
         <br></br>
@@ -39,6 +65,7 @@ class Rooms extends React.Component {
             roomId={this.state.id}
           />
         )}
+        <button onClick={this.addNewRoom}>Добавить комнату</button>
       </div>
     );
   }

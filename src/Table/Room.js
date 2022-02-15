@@ -29,7 +29,7 @@ class Room extends React.Component {
     }
   };
 
-  changeGuest = (info, newValue) => {};
+  
 
   render() {
     const { date, month } = this.state;
@@ -38,7 +38,9 @@ class Room extends React.Component {
     return (
       <div className="room">
         <input type="date" onChange={this.changeDate}></input>
+        <div className="title">
         <h1 className="title">Гости : </h1>
+        </div>
         {roomArr[month][date]["guests"].map((item, index) => {
           return (
             <Guest

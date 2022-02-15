@@ -1,5 +1,6 @@
 const fs = require("fs");
 
+
 const getCorrectDate = (num) => {
   return num < 10 ? `0${num}` : "" + `${num}`;
 };
@@ -22,7 +23,7 @@ getDaysArray = (year, month) => {
       id: 1,
       places: 2,
       number: 1,
-      guests: ["Петров", "Сидоров"],
+      guests: ["", ""],
     };
     date.setDate(date.getDate() + 1);
   }

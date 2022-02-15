@@ -15,14 +15,48 @@ app.listen(8000, () => {
 app.get("/users/:id", (req, res) => {
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Content-Type", "application/json");
+  console.log('Запрос пришел')
   fs.readFile("./data.json", "utf-8", (err, data) => {
     if (!err) {
       const result = JSON.parse(data);
       res.send(result[req.params.id]);
+      console.log('Запрос обработан')
     } else {
       console.log(err);
     }
   });
+});
+
+
+app.get("/length", (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Content-Type", "application/json");
+  fs.readFile("./data.json", "utf-8", (err, data) => {
+    if (!err) {
+      const result = JSON.parse(data);
+      const num = result.length
+      const arr = [] 
+      for(let i = 1 ; i <= num ; i++){
+        arr.push(i)
+      }
+      res.send(arr);
+    } else {
+      console.log(err);
+    }
+  });
+});
+
+app.get("/add", (req, res) => {
+  
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Content-Type", "application/json");
+  const json = fs.readFileSync("./data.json");
+  const arr = JSON.parse(json);
+  const newJson = fs.readFileSync("./test.json");
+  const newRoom = JSON.parse(newJson);
+  arr.push(newRoom);
+  fs.writeFileSync("./data.json", JSON.stringify(arr));
+  
 });
 
 app.put("/users/:roomId", (req, res) => {
@@ -41,3 +75,4 @@ app.put("/users/:roomId", (req, res) => {
 
   fs.writeFileSync("./data.json", JSON.stringify(newData));
 });
+
