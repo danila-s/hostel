@@ -1,10 +1,10 @@
 import React from "react";
-import Room from "../Table/Room";
+import Room from "../Room/Room"
 import { connect } from "react-redux";
 import { loadRoom } from "../api";
 import { roomToStore } from "../redux/actions";
-import {addRoom , getLength} from '../api'
-import './Rooms.css'
+import {addRoom , getLength} from '../api';
+import './Rooms.css';
 
 
 class Rooms extends React.Component {

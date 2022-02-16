@@ -1,7 +1,7 @@
 import React from "react";
 import Guest from "../Guest/Guest";
 import "./Room.css";
-import "./header.css";
+
 
 class Room extends React.Component {
   state = {
