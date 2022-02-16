@@ -37,9 +37,12 @@ class Room extends React.Component {
 
     return (
       <div className="room">
-        <input type="date" onChange={this.changeDate}></input>
+        <div className="date-block">
+          <p className="date">Выберите дату :</p>
+          <input type="date" onChange={this.changeDate}></input>
+        </div>
         <div className="title">
-        <h1 className="title">Гости : </h1>
+          <h1 className="title">Гости : </h1>
         </div>
         {roomArr[month][date]["guests"].map((item, index) => {
           return (

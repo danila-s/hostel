@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { loadRoom } from "../api";
 import { roomToStore } from "../redux/actions";
 import {addRoom , getLength} from '../api'
+import './Rooms.css'
 
 
 class Rooms extends React.Component {
@@ -51,12 +52,13 @@ class Rooms extends React.Component {
     return (
       <div className="rooms">
         <div className="selector">
-          <select onChange={this.getRoom}>
+          <h2 className="item">Комната :</h2>
+          <select className="item" onChange={this.getRoom}>
             {length.map(item => {
               return<option>{item}</option>
             })}
           </select>
-        </div>
+          </div>
         <br></br>
         {roomsArr.length > 0 && (
           <Room
