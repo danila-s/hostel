@@ -14,7 +14,8 @@ class Guest extends React.Component {
     const { isChanging, newName } = this.state;
     const { info } = this.props;
     const { roomId } = info;
-    this.props.changeUser(info, newName);
+    console.log(roomId)
+    this.props.changeUser(info, newName , roomId);
     changeUserName(info, newName, roomId);
     this.setState({ isChanging: true });
   };
@@ -49,7 +50,7 @@ class Guest extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  changeUser: (info, newValue) => dispatch(changeUser(info, newValue)),
+  changeUser: (info, newValue , roomId) => dispatch(changeUser(info, newValue , roomId)),
 });
 
 const mapStateToProps = (state) => {

@@ -12,15 +12,15 @@ app.listen(8000, () => {
   console.log("Server has been started , port 8000 ");
 });
 
-app.get("/users/:id", (req, res) => {
+app.get("/users", (req, res) => {
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Content-Type", "application/json");
   console.log('Запрос пришел')
   fs.readFile("./data.json", "utf-8", (err, data) => {
     if (!err) {
       const result = JSON.parse(data);
-      res.send(result[req.params.id]);
-      console.log('Запрос обработан')
+      res.send(result);
+      console.log(null == undefined)
     } else {
       console.log(err);
     }

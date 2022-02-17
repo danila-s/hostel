@@ -1,12 +1,11 @@
-async function loadRoom(id) {
-  console.log('запрос полетел')
-  const response = await fetch(`http://localhost:8000/users/${id}`);
+async function loadRoom() {
+
+  const response = await fetch(`http://localhost:8000/users/`);
   const data = await response.json();
   return data;
 }
 
 async function addRoom() {
-  console.log('azabaza')
   const response = await fetch(`http://localhost:8000/add`);
   const data = await response.json();
   return data;

@@ -16,8 +16,7 @@ class Rooms extends React.Component {
   };
 
   componentDidMount() {
-    const { id } = this.state;
-    loadRoom(id).then((data) => {
+    loadRoom().then((data) => {
       this.props.roomToStore(data);
     });
     this.newLength()
@@ -33,17 +32,15 @@ class Rooms extends React.Component {
   addNewRoom = () => {
     addRoom();
     this.newLength();
+    loadRoom().then((data) => {
+      this.props.roomToStore(data);
+    });
   }
 
   getRoom = (e) => {
     this.setState({id : e.target.value - 1})
-    loadRoom(e.target.value - 1)
-    .then((data) => {
-      this.props.roomToStore(data);
-    });
+    }
      
-     
-  }
 
   render() {
     const { roomsArr } = this.props;

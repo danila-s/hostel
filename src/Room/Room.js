@@ -44,10 +44,9 @@ class Room extends React.Component {
         <div className="title">
           <h1 className="title">Гости : </h1>
         </div>
-        {roomArr[month][date]["guests"].map((item, index) => {
+        {roomArr[roomId][month][date]["guests"].map((item, index) => {
           return (
             <Guest
-              callback={this.changeGuest}
               info={{
                 month: month,
                 date: date,
