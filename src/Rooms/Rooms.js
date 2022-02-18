@@ -16,9 +16,7 @@ class Rooms extends React.Component {
   };
 
   componentDidMount() {
-    loadRoom().then((data) => {
-      this.props.roomToStore(data);
-    });
+    
     this.newLength()
   }
 
@@ -52,7 +50,7 @@ class Rooms extends React.Component {
           <h2 className="item">Комната :</h2>
           <select className="item" onChange={this.getRoom}>
             {length.map(item => {
-              return<option>{item}</option>
+              return<option key={item}>{item}</option>
             })}
           </select>
           </div>

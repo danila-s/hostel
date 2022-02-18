@@ -6,3 +6,41 @@
   justify-content: center;
   background-color: aliceblue;
 }
+
+.table-container {
+  overflow: scroll;
+  max-height: 90vh;
+}
+
+
+table {
+  border: 1px solid black;
+  border-spacing:0;
+  border-collapse: collapse;
+}
+
+td{
+  padding: 5px;
+  border: 1px solid black;
+  border-spacing:0;
+  border-collapse: collapse;
+}
+
+th{
+  border: 1px solid black;
+  border-spacing:0;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+.green {
+  background-color: greenyellow;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.gray {
+  background-color: gray;
+}
