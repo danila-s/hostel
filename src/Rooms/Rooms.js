@@ -23,7 +23,6 @@ class Rooms extends React.Component {
   newLength = () => {
     getLength().then((data) => {
       this.setState({length : data});
-      console.log(data)
     });
   }
 
