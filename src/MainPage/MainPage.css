@@ -1,3 +1,17 @@
+.change-window{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    position: fixed;
+    opacity: 50%;
+    color: white;
+
+}
+
+
 .login-root {
   width: 100vm;
   height: 100vh;
@@ -23,7 +37,7 @@
 }
 
 .table-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(70deg, black, gray);
+  background-color: lightgrey;
   border-radius: 12px;
 }
 .table-container::-webkit-scrollbar-thumb:hover {

@@ -1,5 +1,6 @@
 const CHANGE_USER = "CHANGE_USER";
 const ROOM_TO_STORE = "ROOM_TO_STORE";
+const CHANGE_WINDOW_STATUS = 'CHANGE_WINDOW_STATUS'
 
 function changeUser(info, newValue, roomId) {
   return {
@@ -21,4 +22,12 @@ function roomToStore(data) {
   };
 }
 
-export { changeUser, CHANGE_USER, roomToStore, ROOM_TO_STORE };
+function changeWindowStatus () {
+  return {
+    type: CHANGE_WINDOW_STATUS,
+    payload: {
+    },
+  };
+}
+
+export { changeUser, CHANGE_USER, roomToStore, ROOM_TO_STORE , CHANGE_WINDOW_STATUS , changeWindowStatus};
