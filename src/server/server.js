@@ -15,12 +15,10 @@ app.listen(8000, () => {
 app.get("/users", (req, res) => {
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Content-Type", "application/json");
-  console.log('Запрос пришел')
   fs.readFile("./data.json", "utf-8", (err, data) => {
     if (!err) {
       const result = JSON.parse(data);
       res.send(result);
-      console.log(null == undefined)
     } else {
       console.log(err);
     }
@@ -56,6 +54,7 @@ app.get("/add", (req, res) => {
   const newRoom = JSON.parse(newJson);
   arr.push(newRoom);
   fs.writeFileSync("./data.json", JSON.stringify(arr));
+  res.send(JSON.stringify('Complete'));
   
 });
 
@@ -69,10 +68,11 @@ app.put("/users/:roomId", (req, res) => {
   const json = fs.readFileSync("./data.json");
   const newData = JSON.parse(json);
 
-  console.log(roomId);
 
   newData[roomId][month][date]["guests"][index] = newValue;
 
   fs.writeFileSync("./data.json", JSON.stringify(newData));
+
+  res.send(JSON.stringify('Complete'));
 });
 

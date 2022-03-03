@@ -14,9 +14,14 @@ class Guest extends React.Component {
     const { isChanging, newName } = this.state;
     const { info } = this.props;
     const { roomId } = info;
-    console.log(roomId)
     this.props.changeUser(info, newName , roomId);
-    changeUserName(info, newName, roomId);
+    changeUserName(info, newName, roomId)
+    .then(data => {
+       console.log(data)
+  }).catch(err => {
+      console.log(err);
+      alert('Что-то пошло не так , обновите страницу.');
+  });
     this.setState({ isChanging: true });
   };
 

@@ -10,7 +10,6 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_USER:
       const { info, newValue , roomId } = action.payload;
-      console.log(roomId)
       const newRoom = [...roomsArr];
       newRoom[roomId][info.month][info.date]["guests"][info.index] = newValue;
       const anotherState = { ...state, roomsArr: newRoom };
