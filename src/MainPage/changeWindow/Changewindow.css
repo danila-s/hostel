@@ -1,0 +1,21 @@
+.active-window{
+    background: white;
+    width: 50%;
+    height: 50%;
+    opacity: 200%;
+    color: black;
+}
+
+form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-container{
+    width: 100%;
+    height: 100%;
+}

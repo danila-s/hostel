@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux"
+import './Changewindow.css'
 
 
 class ChangeWindow extends React.Component {
     state = {
-        date: '01.01'
+        date: ''
     }
 
     makeDate = () => {
@@ -33,15 +34,18 @@ class ChangeWindow extends React.Component {
 
     render() {
         const { changedObj, roomsArr } = this.props;
-        const { room, month, day } = changedObj;
-        const { date } = this.state;
-        console.log(roomsArr[room][month])
-        console.log(date)
+        const { room, month } = changedObj;
+        const { date } = this.state;  
         if (roomsArr[room][month][date]) {
             return (
-                <div className="" onClick={this.makeDate}>{roomsArr[room][month][date]['guests'].map((item, index) => {
-                    return <p key={index}>{item}</p>
-                })}</div>
+                <div className="active-window" onClick={this.makeDate}>
+                    <p className="table">Окно изменения данных</p>
+                    <div className="form-container"><form>
+                    {roomsArr[room][month][date]['guests'].map((item, index) => {
+                    return <label key={index}>Имя:
+                      <input type="text" name="name" key={index} defaultValue={item} />
+                    </label>  
+                })}<input type="submit" value="Отправить" /></form></div></div>
             )
         } else {
             return <div></div>
