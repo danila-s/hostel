@@ -86,6 +86,7 @@ class MainPage extends React.Component {
           {changeWindowIsActive ? <div className='change-window'>
             <ChangeWindow
               changedObj={changedObj}
+              callback={this.props.changeWindowStatus}
             />
           </div> : <></>}
           <select onChange={this.changeMonth}>

@@ -11,7 +11,7 @@ class Guest extends React.Component {
   };
 
   changeNames = () => {
-    const { isChanging, newName } = this.state;
+    const { newName } = this.state;
     const { info } = this.props;
     const { roomId } = info;
     this.props.changeUser(info, newName, roomId);

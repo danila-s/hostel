@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux"
 import './Changewindow.css'
+import { changeUserNameFromWindow } from "../../api";
 
 
 class ChangeWindow extends React.Component {
@@ -25,6 +26,20 @@ class ChangeWindow extends React.Component {
         this.setState({ secondGuest: e.target.value })
     }
 
+    saveInfo = () => {
+        const { firstGuest, secondGuest } = this.state;
+        const { changedObj } = this.props;
+        const { date, room, month } = changedObj;
+        changeUserNameFromWindow({ date: date, room: room, month: month }, [firstGuest, secondGuest])
+            .then(data => {
+                console.log(data)
+                this.props.callback()
+            }).catch(err => {
+                console.log(err);
+                alert('Что-то пошло не так , обновите страницу.');
+            });
+    }
+
     render() {
         const { changedObj, roomsArr } = this.props;
         const { room, date, month } = changedObj;
@@ -40,7 +55,7 @@ class ChangeWindow extends React.Component {
                         <label className='item'>Имя гостя:
                             <input type="text" name="name" onChange={this.changeSecondGuest} value={secondGuest || ''} />
                         </label>
-                        <input type="submit" value="Отправить" className='item' /></form></div></div>
+                        <input type="button" value="Отправить" className='item' onClick={this.saveInfo} /></form></div></div>
             )
         } else {
             return <div></div>

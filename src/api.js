@@ -27,6 +27,23 @@ async function changeUserName(info, newValue, roomId) {
   return data
 }
 
+async function changeUserNameFromWindow(info, newArr) {
+  const obj = {
+    info: info,
+    newArr: newArr,
+  };
+  console.log(newArr)
+  const response = await fetch(`http://localhost:8000/change`, {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(obj),
+  });
+  const data = await response.json();
+  return data
+}
+
 async function getLength() {
 
   const response = await fetch(`http://localhost:8000/length`);
@@ -34,4 +51,4 @@ async function getLength() {
   return data;
 }
 
-export { loadRoom, changeUserName , addRoom , getLength };
+export { loadRoom, changeUserName, addRoom, getLength, changeUserNameFromWindow };

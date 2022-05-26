@@ -61,7 +61,7 @@ class Rooms extends React.Component {
             roomId={this.state.id}
           />
         )}
-        <button onClick={this.addNewRoom}>Добавить комнату</button>
+        <button className="add-room-button" onClick={this.addNewRoom}>Добавить комнату</button>
       </div>
     );
   }

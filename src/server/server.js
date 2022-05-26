@@ -33,8 +33,8 @@ app.get("/length", (req, res) => {
     if (!err) {
       const result = JSON.parse(data);
       const num = result.length
-      const arr = [] 
-      for(let i = 1 ; i <= num ; i++){
+      const arr = []
+      for (let i = 1; i <= num; i++) {
         arr.push(i)
       }
       res.send(arr);
@@ -45,7 +45,7 @@ app.get("/length", (req, res) => {
 });
 
 app.get("/add", (req, res) => {
-  
+
   res.set("Access-Control-Allow-Origin", "*");
   res.set("Content-Type", "application/json");
   const json = fs.readFileSync("./data.json");
@@ -55,7 +55,7 @@ app.get("/add", (req, res) => {
   arr.push(newRoom);
   fs.writeFileSync("./data.json", JSON.stringify(arr));
   res.send(JSON.stringify('Complete'));
-  
+
 });
 
 app.put("/users/:roomId", (req, res) => {
@@ -64,15 +64,22 @@ app.put("/users/:roomId", (req, res) => {
   const { newValue, info } = req.body;
   const { month, date, index } = info;
   const { roomId } = req.params;
-
   const json = fs.readFileSync("./data.json");
   const newData = JSON.parse(json);
-
-
   newData[roomId][month][date]["guests"][index] = newValue;
-
   fs.writeFileSync("./data.json", JSON.stringify(newData));
+  res.send(JSON.stringify('Complete'));
+});
 
+app.put("/change", (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Content-Type", "application/json");
+  const { newArr, info } = req.body;
+  const { room, date, month } = info;
+  const json = fs.readFileSync("./data.json");
+  const newData = JSON.parse(json);
+  newData[room][month][date]["guests"] = newArr;
+  fs.writeFileSync("./data.json", JSON.stringify(newData));
   res.send(JSON.stringify('Complete'));
 });
 
