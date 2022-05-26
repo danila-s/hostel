@@ -3,7 +3,7 @@ import Room from "../Room/Room"
 import { connect } from "react-redux";
 import { loadRoom } from "../api";
 import { roomToStore } from "../redux/actions";
-import {addRoom , getLength} from '../api';
+import { addRoom, getLength } from '../api';
 import './Rooms.css';
 
 
@@ -12,17 +12,17 @@ class Rooms extends React.Component {
     roomsArr: [],
     id: 0,
     idCount: 1,
-    length : []
+    length: []
   };
 
   componentDidMount() {
-    
+
     this.newLength()
   }
 
   newLength = () => {
     getLength().then((data) => {
-      this.setState({length : data});
+      this.setState({ length: data });
     });
   }
 
@@ -35,13 +35,13 @@ class Rooms extends React.Component {
   }
 
   getRoom = (e) => {
-    this.setState({id : e.target.value - 1})
-    }
-     
+    this.setState({ id: e.target.value - 1 })
+  }
+
 
   render() {
     const { roomsArr } = this.props;
-    const {length} = this.state
+    const { length } = this.state
 
     return (
       <div className="rooms">
@@ -49,10 +49,10 @@ class Rooms extends React.Component {
           <h2 className="item">Комната :</h2>
           <select className="item" onChange={this.getRoom}>
             {length.map(item => {
-              return<option key={item}>{item}</option>
+              return <option key={item}>{item}</option>
             })}
           </select>
-          </div>
+        </div>
         <br></br>
         {roomsArr.length > 0 && (
           <Room

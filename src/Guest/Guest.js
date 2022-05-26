@@ -14,14 +14,14 @@ class Guest extends React.Component {
     const { isChanging, newName } = this.state;
     const { info } = this.props;
     const { roomId } = info;
-    this.props.changeUser(info, newName , roomId);
+    this.props.changeUser(info, newName, roomId);
     changeUserName(info, newName, roomId)
-    .then(data => {
-       console.log(data)
-  }).catch(err => {
-      console.log(err);
-      alert('Что-то пошло не так , обновите страницу.');
-  });
+      .then(data => {
+        console.log(data)
+      }).catch(err => {
+        console.log(err);
+        alert('Что-то пошло не так , обновите страницу.');
+      });
     this.setState({ isChanging: true });
   };
 
@@ -55,7 +55,7 @@ class Guest extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  changeUser: (info, newValue , roomId) => dispatch(changeUser(info, newValue , roomId)),
+  changeUser: (info, newValue, roomId) => dispatch(changeUser(info, newValue, roomId)),
 });
 
 const mapStateToProps = (state) => {

@@ -5,47 +5,42 @@ import './Changewindow.css'
 
 class ChangeWindow extends React.Component {
     state = {
-        date: ''
+        fistGuest: '',
+        secondGuest: ''
     }
 
-    makeDate = () => {
-        const { changedObj } = this.props;
-        const { month, day } = changedObj;
-        let trueDay = ''
-        let trueMonth = ''
-        if (month < 9) {
-            trueMonth = '0' + String(+month + 1);
-        } else {
-            trueMonth = String(+month + 1);
-        }
-        if (day < 9) {
-            trueDay = '0' + String(+day + 1);
-        } else {
-            trueDay = String(+day + 1)
-        }
-        this.setState({ date: trueDay + '.' + trueMonth })
-    }
+
 
     componentDidMount() {
-        this.makeDate();
+        const { changedObj, roomsArr } = this.props;
+        const { room, month, date } = changedObj;
+        this.setState({ firstGuest: roomsArr[room][month][date]['guests'][0], secondGuest: roomsArr[room][month][date]['guests'][1] })
     }
 
+    changeFirstGuest = (e) => {
+        this.setState({ firstGuest: e.target.value })
+    }
 
+    changeSecondGuest = (e) => {
+        this.setState({ secondGuest: e.target.value })
+    }
 
     render() {
         const { changedObj, roomsArr } = this.props;
-        const { room, month } = changedObj;
-        const { date } = this.state;  
+        const { room, date, month } = changedObj;
+        const { secondGuest, firstGuest } = this.state;
         if (roomsArr[room][month][date]) {
             return (
                 <div className="active-window" onClick={this.makeDate}>
                     <p className="table">Окно изменения данных</p>
-                    <div className="form-container"><form>
-                    {roomsArr[room][month][date]['guests'].map((item, index) => {
-                    return <label key={index}>Имя:
-                      <input type="text" name="name" key={index} defaultValue={item} />
-                    </label>  
-                })}<input type="submit" value="Отправить" /></form></div></div>
+                    <div className="form-container"><form onSubmit={this.hahandleSubmit}>
+                        <label className='item'>Имя гостя:
+                            <input type="text" name="name" onChange={this.changeFirstGuest} value={firstGuest || ''} />
+                        </label>
+                        <label className='item'>Имя гостя:
+                            <input type="text" name="name" onChange={this.changeSecondGuest} value={secondGuest || ''} />
+                        </label>
+                        <input type="submit" value="Отправить" className='item' /></form></div></div>
             )
         } else {
             return <div></div>

@@ -29,7 +29,7 @@ class Room extends React.Component {
     }
   };
 
-  
+
 
   render() {
     const { date, month } = this.state;
@@ -47,7 +47,7 @@ class Room extends React.Component {
         {roomArr[roomId][month][date]["guests"].map((item, index) => {
           return (
             <Guest
-            key={index}
+              key={index}
               info={{
                 month: month,
                 date: date,

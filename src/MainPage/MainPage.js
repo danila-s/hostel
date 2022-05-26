@@ -4,8 +4,9 @@ import "./MainPage.css";
 import Rooms from "../Rooms/Rooms";
 import { connect } from "react-redux";
 import { loadRoom } from "../api";
-import { roomToStore , changeWindowStatus } from "../redux/actions";
+import { roomToStore, changeWindowStatus } from "../redux/actions";
 import ChangeWindow from "./changeWindow/ChangeWindow";
+import { makeDate } from "../tools";
 
 
 class MainPage extends React.Component {
@@ -26,7 +27,7 @@ class MainPage extends React.Component {
       "ноябрь",
       "декабрь",
     ],
-    changedObj : {} ,
+    changedObj: {},
   };
 
   componentDidMount() {
@@ -42,9 +43,9 @@ class MainPage extends React.Component {
   };
 
   changeTable = (indexRow, indexColumn) => {
-    const {monthId} = this.state
+    const { monthId } = this.state
     this.props.changeWindowStatus();
-    this.setState({changedObj :{room : indexRow , month : monthId , day : indexColumn}})
+    this.setState({ changedObj: { room: indexRow, date: makeDate(indexColumn, monthId), month: monthId } })
   };
 
   addClass(item) {
@@ -66,7 +67,7 @@ class MainPage extends React.Component {
 
       case 2:
         return "green";
-      
+
 
     }
   }
@@ -76,17 +77,17 @@ class MainPage extends React.Component {
   };
 
   render() {
-    const { isLog, monthId, monthArr , changedObj } = this.state;
-    const { roomsArr , changeWindowIsActive} = this.props;
+    const { isLog, monthId, monthArr, changedObj } = this.state;
+    const { roomsArr, changeWindowIsActive } = this.props;
 
     if (isLog && roomsArr.length > 0) {
       return (
         <div>
           {changeWindowIsActive ? <div className='change-window'>
-          <ChangeWindow
-          changedObj = {changedObj}
-          />
-        </div> : <></>}
+            <ChangeWindow
+              changedObj={changedObj}
+            />
+          </div> : <></>}
           <select onChange={this.changeMonth}>
             {monthArr.map((item, index) => {
               return (
@@ -158,7 +159,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => {
   return {
     roomsArr: state.roomsArr,
-    changeWindowIsActive : state.changeWindowIsActive
+    changeWindowIsActive: state.changeWindowIsActive
   };
 };
 
