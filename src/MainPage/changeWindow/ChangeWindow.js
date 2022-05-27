@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux"
 import './Changewindow.css'
 import { changeUserNameFromWindow } from "../../api";
+import { changeAllRoom } from '../../redux/actions'
 
 
 class ChangeWindow extends React.Component {
@@ -33,6 +34,7 @@ class ChangeWindow extends React.Component {
         changeUserNameFromWindow({ date: date, room: room, month: month }, [firstGuest, secondGuest])
             .then(data => {
                 console.log(data)
+                this.props.changeAllRoom(date, room, month, [firstGuest, secondGuest])
                 this.props.callback()
             }).catch(err => {
                 console.log(err);
@@ -64,7 +66,7 @@ class ChangeWindow extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-
+    changeAllRoom: (data, room, month, newArr) => dispatch(changeAllRoom(data, room, month, newArr))
 });
 
 const mapStateToProps = (state) => {
